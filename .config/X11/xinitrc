@@ -1,0 +1,22 @@
+#!/bin/sh
+
+/home/rahnamai/.local/share/scripts/batt-status.sh&
+/usr/lib/notification-daemon-1.0/notification-daemon&
+/usr/lib/kdeconnectd&
+flameshot&
+unclutter -idle 3 &
+setxkbmap -layout gb,ir -option grp:alt_shift_toggle
+feh --bg-fill --randomize /mnt/mydrive/wallpapers&
+
+touchpad_id=$(xinput list --short | grep -i touchpad | cut -f 2 | cut -d = -f 2)
+xinput set-prop $touchpad_id "libinput Tapping Enabled" 1
+xinput set-prop $touchpad_id "libinput Accel Speed" 0.5
+xinput set-prop $touchpad_id "libinput Middle Emulation Enabled" 1
+xinput set-prop $touchpad_id "libinput Horizontal Scroll Enabled" 1
+xinput set-prop $touchpad_id "libinput Disable While Typing Enabled" 1
+
+
+#xsetroot -solid "#282828"&
+slstatus&
+redshift&
+exec dwm
